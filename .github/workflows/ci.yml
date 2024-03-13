@@ -39,11 +39,11 @@ jobs:
 		
 
 	  - name: Run dbt deps
-		  run: dbt deps --porfiles-dir
+		  run: dbt deps --profiles-dir
 		
 
 	  - name: Compile docs
-      run: dbt docs generate --porfiles-dir . --target prod
+      run: dbt docs generate --profiles-dir . --target prod
 
 	  - name: Deploy 
         uses: JamesIves/github-pages-deploy-action@v4

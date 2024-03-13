@@ -13,6 +13,7 @@ on:
 
   # Triggers the workflow manually from GUI
   workflow_dispatch:
+
 permissions:
   contents: write
 jobs:
@@ -39,7 +40,7 @@ jobs:
 		
 
 	  - name: Run dbt deps
-		  run: dbt deps --profiles-dir
+		  run: dbt deps --profiles-dir .
 		
 
 	  - name: Compile docs

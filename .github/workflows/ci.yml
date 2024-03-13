@@ -2,55 +2,46 @@ name: CI
 
 # Triggers
 on:
-  # Triggers the workflow on push to main branch
   pull_request:
-	  branches:
-      - main 
-
+    branches:
+      - main
   push:
     branches:
-      - github_pages_test 
-
-  # Triggers the workflow manually from GUI
+      - github_pages_test
   workflow_dispatch:
 
 permissions:
   contents: write
+
 jobs:
-  # Build job
   build:
-	runs-on: ubuntu-latest
-  env:
-    DBT_USER: ${{ secrets.DBT_USER }}
-	  DBT_PASSWORD: ${{ secrets.DBT_PASSWORD }}
-	 
-	  
+    runs-on: ubuntu-latest
+    env:
+      DBT_USER: ${{ secrets.DBT_USER }}
+      DBT_PASSWORD: ${{ secrets.DBT_PASSWORD }}
 
-	steps:
-    - uses: actions/checkout@v3
+    steps:
+      - uses: actions/checkout@v3
 
-	  - name: Setup Python
-		  uses: actions/checkout@v2
-      with:
-        python-version: '3.9'
-		  
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
 
-	  - name: Install dbt
-		  run: pip install dbt-sqlserver
-		
+      - name: Install dbt
+        run: pip install dbt-sqlserver
 
-	  - name: Run dbt deps
-		  run: dbt deps --profiles-dir .
-		
+      - name: Run dbt deps
+        run: dbt deps --profiles-dir .
 
-	  - name: Compile docs
-      run: dbt docs generate --profiles-dir . --target prod
+      - name: Compile docs
+        run: dbt docs generate --profiles-dir . --target prod
 
-	  - name: Deploy 
+      - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: target # The folder the action should deploy.
-      
+
     
 		
 		

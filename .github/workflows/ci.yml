@@ -4,10 +4,12 @@ name: CI
 on:
   # Triggers the workflow on push to main branch
   pull_request:
-	  branches: [ main ]
+	  branches:
+      - main 
 
   push:
-    branches: [github_pages_test]
+    branches:
+      - github_pages_test 
 
   # Triggers the workflow manually from GUI
   workflow_dispatch:

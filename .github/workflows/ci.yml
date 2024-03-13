@@ -35,7 +35,7 @@ jobs:
         run: dbt deps --profiles-dir .
 
       - name: Compile docs
-        run: dbt docs generate --profiles-dir . --target prod
+        run: dbt docs generate --profiles-dir . --target dev
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4

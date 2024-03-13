@@ -1,0 +1,1 @@
+select * from AdventureWorks2019.Person.Address

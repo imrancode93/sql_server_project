@@ -35,6 +35,9 @@ jobs:
         with:
           python-version: '3.9'
 
+      - name: Update Protobuf library
+        run: pip install --upgrade protobuf
+
       - name: Install dbt
         run: pip install dbt-sqlserver
 
@@ -42,7 +45,7 @@ jobs:
         run: dbt deps --profiles-dir .
 
       - name: Compile docs
-        run: dbt docs generate --profiles-dir . --target dev
+        run: dbt docs generate --profiles-dir . --target prod
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
